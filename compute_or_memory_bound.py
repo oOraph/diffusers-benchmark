@@ -1,4 +1,3 @@
-import logging
 import os
 import time
 import torch
@@ -8,8 +7,6 @@ import numpy as np
 import pandas as pd
 
 os.environ['HF_HUB_ENABLE_HF_TRANSFER'] = '1'
-
-LOG = logging.getLogger(__name__)
 
 height=512
 width=512
@@ -24,7 +21,7 @@ prompts = datasets.load_dataset("Gustavosta/Stable-Diffusion-Prompts", split='tr
 df = pd.DataFrame([], columns=['inference_steps', 'batch', 'time', 'time_per_image'])
 
 if torch.cuda.is_available():
-    LOG.info("Moving diffusion model to GPU")
+    print("Moving diffusion model to GPU")
     diffusion.to('cuda')
 
 
